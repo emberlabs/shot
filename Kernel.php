@@ -44,9 +44,7 @@ class Kernel extends Core
 
 	protected static $init = false;
 
-	protected static $dispatcher;
-
-	protected static $injector;
+	protected static $dispatcher, $injector;
 
 	protected static function _init()
 	{

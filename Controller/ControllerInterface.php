@@ -19,7 +19,7 @@
  */
 
 namespace emberlabs\shot\Controller;
-namespace \OpenFlame\Framework\Route\RouteInstance;
+use \OpenFlame\Framework\Route\RouteInstance;
 
 /**
  * Shot - Controller interface
