@@ -24,8 +24,8 @@ use \OpenFlame\Framework\Route\RouteInstance;
 use \OpenFlame\Framework\Core\Internal\FileException;
 
 /**
- * Shot - Controller interface
- * 	     Provides controller prototype for controllers to fulfill.
+ * Shot - Include Controller
+ * 	     Provides a crazilyy easy way to create controllers.
  *
  * @package     shot
  * @author      emberlabs.org
@@ -106,7 +106,10 @@ class IncludeController implements ControllerInterface
 		// Assign scope variables for the controller
 		$route = $this->getRoute();
 		$template_name = $this->getTemplate();
-		extract(Kernel::mget($this->getInjectedObjects()), EXTR_OVERWRITE);
+		if($this->getInjectedObjects())
+		{
+			extract(Kernel::mget($this->getInjectedObjects()), EXTR_OVERWRITE);
+		}
 
 		// Set $return to NULL - the include file can overwrite the value itself if it wants.
 		$return = NULL;
