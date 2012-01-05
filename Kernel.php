@@ -66,6 +66,23 @@ class Kernel extends Core
 		return self::$injector->get($object);
 	}
 
+	public static function mget(array $objects, $object_slot_as_key = true)
+	{
+		$r = array();
+		foreach($objects as $object)
+		{
+			if($object_slot_as_key)
+			{
+				$r[$object] = self::$injector->get($object);
+			}
+			else
+			{
+				$r[] = self::$injector->get($object);
+			}
+		}
+		return $r;
+	}
+
 	public static function register($event, $priority, $listener, $limit = -1)
 	{
 		if(!self::$init)
@@ -83,10 +100,10 @@ class Kernel extends Core
 
 	public static function _trigger(Event $event, $dispatch_type = self::TRIGGER_NOBREAK)
 	{
-		return self::$dispatcher->trigger($event), $dispatch_type);
+		return self::$dispatcher->trigger($event, $dispatch_type);
 	}
 
-	public static function burstTrigger(array $events)
+	public static function mtrigger(array $events)
 	{
 		foreach($events as $event)
 		{
