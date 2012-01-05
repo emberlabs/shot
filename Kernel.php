@@ -44,9 +44,9 @@ class Kernel extends Core
 
 	protected static $init = false;
 
-	protected $dispatcher;
+	protected static $dispatcher;
 
-	protected $injector;
+	protected static $injector;
 
 	protected static function _init()
 	{
@@ -76,8 +76,28 @@ class Kernel extends Core
 		return self::$dispatcher->register($event, $priority, $listener, $limit);
 	}
 
-	public static function trigger(Event $event, $dispatch_type = self::TRIGGER_NOBREAK)
+	public static function trigger($event_name, $dispatch_type = self::TRIGGER_NOBREAK)
 	{
-		// asdf
+		return self::$dispatcher->trigger(Event::newEvent($event_name), $dispatch_type);
+	}
+
+	public static function _trigger(Event $event, $dispatch_type = self::TRIGGER_NOBREAK)
+	{
+		return self::$dispatcher->trigger($event), $dispatch_type);
+	}
+
+	public static function burstTrigger(array $events)
+	{
+		foreach($events as $event)
+		{
+			if($event instanceof Event)
+			{
+				self::_trigger($event);
+			}
+			else
+			{
+				self::trigger($event);
+			}
+		}
 	}
 }
