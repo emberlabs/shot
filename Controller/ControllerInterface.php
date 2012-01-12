@@ -40,6 +40,10 @@ interface ControllerInterface
 
 	public function setTemplate($template);
 
+	public function getRequiredAuths();
+
+	public function setRequiredAuths(array $auths);
+
 	public function getRoute();
 
 	public function setRoute(RouteInstance $route);
