@@ -34,7 +34,7 @@ use \OpenFlame\Framework\Core\Internal\FileException;
  */
 class IncludeController implements ControllerInterface
 {
-	protected $name, $template, $route, $include_file, $objects;
+	protected $name, $template, $auths, $route, $include_file, $objects;
 
 	public function getName()
 	{
@@ -56,6 +56,18 @@ class IncludeController implements ControllerInterface
 	public function setTemplate($template)
 	{
 		$this->template = (string) $template;
+
+		return $this;
+	}
+
+	public function getRequiredAuths()
+	{
+		return $this->auths;
+	}
+
+	public function setRequiredAuths(array $auths)
+	{
+		$this->auths = $auths;
 
 		return $this;
 	}
