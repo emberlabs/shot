@@ -48,5 +48,9 @@ interface ControllerInterface
 
 	public function setRoute(RouteInstance $route);
 
+	public function before(RouteInstance $route = NULL);
+
 	public function runController();
+
+	public function after();
 }

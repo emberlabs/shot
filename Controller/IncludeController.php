@@ -101,6 +101,11 @@ class IncludeController implements ControllerInterface
 		return $this;
 	}
 
+	public function before(RouteInstance $route = NULL)
+	{
+		// asdf
+	}
+
 	public function runController()
 	{
 		// Assign scope variables for the controller
@@ -117,5 +122,10 @@ class IncludeController implements ControllerInterface
 		include $this->getIncludeFile();
 
 		return $return;
+	}
+
+	public function after()
+	{
+		// asdf
 	}
 }
